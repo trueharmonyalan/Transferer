@@ -1,19 +1,6 @@
 import { webcrypto } from "crypto";
 import { KeyGenerator } from "@shared/shared.js";
 
-// class KeyConstructor {
-//   public actualKey: string
-
-//   generateKey(): string {
-//     const keyConfiguration = new Uint8Array(5)
-//     const constructKey = webcrypto.getRandomValues(keyConfiguration)
-//     this.actualKey = Buffer.from(constructKey).toString('hex')
-//     return this.actualKey
-
-//   }
-
-// }
-
 class KeyConstructor {
   public actualKey: string;
 
@@ -21,6 +8,7 @@ class KeyConstructor {
 
   generateKey(length: number = 5): string {
     const bytes = this.generator.getRandomBytes(length);
+    console.log(bytes);
     this.actualKey = Buffer.from(bytes).toString("hex");
     return this.actualKey;
   }
