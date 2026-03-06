@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "baseUrl": "..",
     "paths": {
       "@shared/*": ["shared/*"],
+      "signalingServer/*": ["./signalingServer/*"],
     },
     "rootDir": "..",
-    "outDir": "../dist/signalingServerMain",
+    "outDir": "../dist/signalingServer",
     "strict": true,
     "esModuleInterop": true,
   },

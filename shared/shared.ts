@@ -9,3 +9,7 @@ export interface KeyGenerator {
 export type ProjectENV = {
   PORT: string;
 };
+
+export type RoomKeyResponse = {
+  key: string;
+};

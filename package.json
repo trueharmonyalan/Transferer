@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --exec tsx signalingServer/src/server.ts"
+    "dev": "nodemon --exec tsx --tsconfig signalingServer/tsconfig.json signalingServer/src/server.ts"
   },
   "repository": {
     "type": "git",

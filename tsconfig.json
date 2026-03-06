@@ -1,9 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "strict": true,
-  },
-  "include": ["shared", "signalingServerMain/src", "client/src"],
+  "files": [],
+  "references": [{ "path": "./signalingServer" }, { "path": "./client" }],
 }
