@@ -12,4 +12,10 @@ export type ProjectENV = {
 
 export type RoomKeyResponse = {
   key: string;
+  status?: true | false;
+  error?: string | undefined;
 };
+
+export interface keyValidator {
+  dbKeyCheck(key: string): Promise<boolean>;
+}

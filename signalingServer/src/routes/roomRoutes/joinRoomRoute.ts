@@ -1,6 +1,6 @@
 import express from "express";
-import { getRoomKey } from "signalingServer/src/controllers/roomController/roomController.js";
+import { keyValidtorController } from "signalingServer/src/controllers/roomController/keyValidatorController";
+import { DbKeyCheckClass } from "signalingServer/src/services/roomKeyService/keyValidator";
 
 export const joinRoomRoute = express.Router();
-
-joinRoomRoute.get("/key", getRoomKey);
+joinRoomRoute.post("/key", keyValidtorController(new DbKeyCheckClass()));
