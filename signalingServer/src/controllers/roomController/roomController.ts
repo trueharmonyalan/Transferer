@@ -1,6 +1,6 @@
 import { generateKey } from "signalingServer/src/services/roomKeyService/KeyService.js";
 import { RoomKeyResponse } from "@shared/shared.js";
-import { db } from "signalingServer/src/lib/db";
+import { db } from "@db/index.js";
 
 export function getRoomKey(req, res) {
   const dball = db.prepare(`SELECT * FROM keymanager`).all();

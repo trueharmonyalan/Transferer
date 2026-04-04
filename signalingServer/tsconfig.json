@@ -6,6 +6,7 @@
     "baseUrl": "..",
     "paths": {
       "@shared/*": ["shared/*"],
+      "@db/*": ["packages/db/*"],
       "signalingServer/*": ["./signalingServer/*"],
     },
     "rootDir": "..",

@@ -2,7 +2,7 @@ import express from "express";
 import { ENV } from "./lib/projectManagement/env.js";
 import { createRoomRoute } from "./routes/roomRoutes/createRoomRoute.js";
 import { joinRoomRoute } from "./routes/roomRoutes/joinRoomRoute.js";
-import { migrate } from "./lib/db/migration.js";
+import { migrate } from "@db/migration.js";
 
 const app = express();
 
