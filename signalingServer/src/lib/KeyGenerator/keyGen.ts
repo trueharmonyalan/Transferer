@@ -2,7 +2,7 @@ import { webcrypto } from "crypto";
 import { KeyGenerator } from "@shared/shared.js";
 
 export class KeyConstructor {
-  public actualKey: string;
+  public actualKey!: string;
 
   constructor(private generator: KeyGenerator) {}
 

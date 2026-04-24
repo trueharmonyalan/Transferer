@@ -1,9 +1,19 @@
 import { keyValidator } from "@shared/shared";
+import { db } from "@db/index";
 
 export class DbKeyCheckClass implements keyValidator {
   async dbKeyCheck(key: string): Promise<boolean> {
-    console.log(key);
+    const isDbHasKey = db
+      .prepare(
+        `SELECT key From keymanager
+      WHERE key = ? and status = ?`,
+      )
+      .get(key, "active");
+    console.log(isDbHasKey, key);
+    if (isDbHasKey) {
+      return true;
+    }
 
-    return true;
+    return false;
   }
 }

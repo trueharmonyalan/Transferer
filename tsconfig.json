@@ -1,4 +1,4 @@
 {
   "files": [],
-  "references": [{ "path": "./signalingServer" }, { "path": "./client" }],
+  "references": [{ "path": "./signalingServer" }],
 }

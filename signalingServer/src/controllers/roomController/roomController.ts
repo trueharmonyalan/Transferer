@@ -2,7 +2,7 @@ import { generateKey } from "signalingServer/src/services/roomKeyService/KeyServ
 import { RoomKeyResponse } from "@shared/shared.js";
 import { db } from "@db/index.js";
 
-export function getRoomKey(req, res) {
+export function getRoomKey(req: any, res: any) {
   const dball = db.prepare(`SELECT * FROM keymanager`).all();
   console.log(dball);
   try {
@@ -19,7 +19,12 @@ export function getRoomKey(req, res) {
       const keyInsert = db
         .prepare(`INSERT INTO keymanager (key, status) VALUES (?,?)`)
         .run(roomKey, "active");
-      console.log("key added");
+
+      const response: RoomKeyResponse = {
+        key: roomKey,
+      };
+
+      return res.json(response);
     } else {
       const keyUpdate = db
         .prepare(
@@ -30,12 +35,6 @@ export function getRoomKey(req, res) {
         .run("active", roomKey);
       console.log("status updated");
     }
-
-    const response: RoomKeyResponse = {
-      key: roomKey,
-    };
-
-    return res.json(response);
   } catch (error) {
     return res.json(`error: ${error}`);
   }

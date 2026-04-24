@@ -2,14 +2,17 @@ import { RoomKeyResponse } from "@shared/shared";
 import { keyValidator } from "@shared/shared";
 
 export function keyValidtorController(validator: keyValidator) {
-  return async function (req, res) {
+  return async function (req: any, res: any) {
     const receivedKey: RoomKeyResponse = req.body;
-
-    console.log(receivedKey);
 
     try {
       if (!receivedKey?.key) {
         receivedKey.error = "Key is not given or expired";
+        return res.status(404).json({ error: receivedKey.error });
+      }
+
+      if (receivedKey.key.length < 5) {
+        receivedKey.error = "unxpected format";
         return res.status(404).json({ error: receivedKey.error });
       }
 
@@ -23,8 +26,8 @@ export function keyValidtorController(validator: keyValidator) {
       const isValid = await validator.dbKeyCheck(receivedKey.key);
 
       console.log(isValid);
-    } catch (e) {
-      return res.status(404).json({ error: e.message });
+    } catch (error: any) {
+      return res.status(404).json({ error: error.message });
     }
 
     return res.json({ success: receivedKey.key });
