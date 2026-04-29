@@ -2,18 +2,23 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution":"node10",
+    "ignoreDeprecations": "6.0",
     "baseUrl": "..",
     "paths": {
       "@shared/*": ["shared/*"],
       "@db/*": ["packages/db/*"],
-      "@websocket/*": ["signalingServer/src/websocketServer/*"],
+      "@websocket/*": ["signalingServer/src/websockets/*"],
       "signalingServer/*": ["signalingServer/*"],
+      "@handlerInterfaces/*": ["signalingServer/src/websockets/src/handlerInterfaces/*"]
     },
     "rootDir": "..",
     "outDir": "../dist/signalingServer",
     "strict": true,
     "esModuleInterop": true,
+    "composite": true,
+    "declaration": true,
+    "lib": ["ES2022"]
   },
-  "include": ["src", "../shared"],
+  "include": ["src", "../shared", "../packages/db"],
 }
