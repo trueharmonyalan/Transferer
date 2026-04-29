@@ -28,6 +28,12 @@ export interface logger {
 
 // Websocket and WebRTC types and its interfaces
 
+// export { WebSocket, WebSocketServer } from "ws"
+import { WebSocket as WsWebSocket, WebSocketServer as WsWebSocketServer } from "ws";
+
+export { WsWebSocket as WebSocket, WsWebSocketServer as WebSocketServer };
+
+
 export type MessageType =
   | "join"
   | "offer"
@@ -58,7 +64,7 @@ interface IceCandidate {
 
 export interface IceCandidateInterface {
   type: "ice-candidate";
-  payload: { roomkey: string; icecandidate: IceCandidate };
+  payload: { roomKey: string; icecandidate: IceCandidate };
 }
 
 export interface CreateInterface {
@@ -67,8 +73,11 @@ export interface CreateInterface {
 }
 
 export interface MessageHandler<T> {
-  handle(message: T, socket: WebSocket, roomKey: string): void;
+  handle(message: T, socket: WsWebSocket): void;
 }
+
+
+
 
 export type IncomingMessage =
   | JoinInterface
@@ -77,11 +86,15 @@ export type IncomingMessage =
   | IceCandidateInterface
   | CreateInterface;
 
-// usage of generics T
-// class exampleJoin implements MessageHandler<JoinInterface> {
-//   handle(msg: JoinInterface, socket: WebSocket, key: string): void {}
-// }
 
-// class exampleOffer implements MessageHandler<OfferInterface> {
-//   handle(msg: OfferInterface, socket: WebSocket, key: string): void {}
-// }
+export interface IRoomRegistry {
+  createRoom(roomKey: string, socket: WsWebSocket): void
+  joinRoom(roomKey: string, socket: WsWebSocket): void
+  getOtherPeer(roomKey: string, socket: WsWebSocket): WsWebSocket | undefined
+}
+
+
+export interface IDispatcher {
+  register(type: MessageType, handler: MessageHandler<IncomingMessage>): void
+  dispatch(raw: string, socket: WsWebSocket): void
+}
